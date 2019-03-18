@@ -1,0 +1,115 @@
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <i class="material-icons">brightness_auto</i>
+    <span>Gerenciador de ofertas</span>
+  </a>
+</nav>
+
+<div class="nav-scroller bg-white shadow-sm brg-sub-nav">
+  <nav class="nav nav-underline">
+    <a class="nav-link active">Opções de Compra</a>
+    <a class="nav-link brg-active"  href="/deal">Anúncios</a>
+    <a class="nav-link brg-active" (click)="isUserEditor = true">Adicionar</a>
+  </nav>
+</div>
+
+<div class="brg-pack">
+  <div class="container brg-container">
+    <!--
+    <h2 class="brg-naving-title">{{ selectedLevel.title }}</h2>
+    <p>{{ selectedLevel.text }}</p>
+    <p>Opções de compra da oferta {{ selectedLevel.title }}</p>
+    -->
+
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Título</th>
+          <th>Preço</th>
+          <th>Desconto</th>
+          <th>Quantidade de cupons</th>
+          <th>Início vendas</th>
+          <th>Fim vendas</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of selectedLevel.buyOptions">
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.title }}</td>
+          <td>de R$ {{ item.normalPrice }} por R$ {{ item.salePrice }}</td>
+          <td>{{ item.percentageDiscount }}%</td>
+          <td>
+            <a href="#" class="badge brg-badge-lg brg-badge-qt">{{ item.quantityCupom }}</a>
+          </td>
+          <td>{{ item.startDate  | date: 'MM/dd/yyyy':'UTC' }}</td>
+          <td>{{ item.endDate  | date: 'MM/dd/yyyy':'UTC' }}</td>
+          <td>
+            <div>
+              <div class="col">
+                <div ngbDropdown class="d-inline-block">
+                  <button class="btn btn-outline-primary brg-outline-table" id="dropdownBasic1" ngbDropdownToggle>
+                    <i class="material-icons">menu</i>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem (click)="update(item)">Editar opção de compra</button>
+                    <button ngbDropdownItem (click)="deleteUser(contentDeleteUser, item)">Remover opção de compra</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="brg-side" [ngClass]="isUserEditor ? 'brg-block' : 'brg-none'">
+  <nav class="navbar navbar-light bg-faded container">
+    <h1 class="navbar-brand mb-0">Gerenciar Anúncio</h1>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button aria-label="Close" class="close brg-block-close" type="button" (click)="isUserEditor = false">
+            <span aria-hidden="true">×</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <div class="container brg-side-container">
+      <form [formGroup]="buyOptionForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Título</label>
+          <input type="text" class="form-control" name="title" formControlName="title" />
+        </div>
+        <div class="form-group">
+          <label>Preço</label>
+          <input type="text" class="form-control" name="normalPrice" formControlName="normalPrice"/>
+        </div>
+        <div class="form-group">
+          <label>Preço de venda</label>
+          <input type="text" class="form-control" name="salePrice" formControlName="salePrice" ngbDatepicker #d="ngbDatepicker">
+        </div>
+        <div class="form-group">
+          <label>Desconto</label>
+          <input type="number" class="form-control" name="percentageDiscount" formControlName="percentageDiscount">
+        </div>
+        <div class="form-group">
+          <label>Quantidade de cupons</label>
+          <input type="number" class="form-control" name="quantityCupom" formControlName="quantityCupom">
+        </div>
+        <div class="form-group">
+          <label>Início das vendas</label>
+          <input type="date" class="form-control" name="startDate" formControlName="startDate" >
+        </div>
+        <div class="form-group">
+          <label>Fim das vendas</label>
+          <input type="date" class="form-control" name="endDate" formControlName="endDate" >
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </div>
+</div>
+

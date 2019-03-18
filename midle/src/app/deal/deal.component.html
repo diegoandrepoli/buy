@@ -1,0 +1,116 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <i class="material-icons">brightness_auto</i>
+    <span>Gerenciador de ofertas</span>
+  </a>
+</nav>
+<div class="nav-scroller bg-white shadow-sm brg-sub-nav">
+  <nav class="nav nav-underline">
+    <a class="nav-link active">Anúncios</a>
+    <a class="nav-link brg-active" (click)="isUserEditor = true">Adicionar</a>
+  </nav>
+</div>
+
+<div class="brg-pack">
+  <div class="container brg-container">
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Título</th>
+          <th>Criado</th>
+          <th>Publicado</th>
+          <th>Fim da publicação</th>
+          <th>Vendas</th>
+          <th>Tipo</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of deals">
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.createDate | date: 'MM/dd/yyyy':'UTC' }}</td>
+          <td>{{ item.publishDate  | date: 'MM/dd/yyyy':'UTC'}}</td>
+          <td>{{ item.endDate | date: 'MM/dd/yyyy':'UTC' }}</td>
+          <td>{{ item.totalSold }}</td>
+          <td><span class="badge brg-badge-lg brg-badge-{{item.type}}">{{ asType(item.type) }}</span></td>
+        <td>
+          <div>
+            <div class="col">
+              <div ngbDropdown class="d-inline-block">
+                  <button class="btn btn-outline-primary brg-outline-table" id="dropdownBasic1" ngbDropdownToggle>
+                    <i class="material-icons">menu</i>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem (click)="update(item)">Editar Anúncio</button>
+                    <button ngbDropdownItem (click)="deleteUser(contentDeleteUser, item)">Remover Anúncio</button>
+                    <a ngbDropdownItem href="/buy-option/{{ item.id }}">Opções de compra</a>
+                    <a ngbDropdownItem target="_blank" href="/buy/{{ item.url }}">Ver página do produto</a>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+<div class="brg-side" [ngClass]="isUserEditor ? 'brg-block' : 'brg-none'">
+  <nav class="navbar navbar-light bg-faded container">
+    <h1 class="navbar-brand mb-0">Gerenciar Anúncio</h1>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <button aria-label="Close" class="close brg-block-close"
+                type="button" (click)="isUserEditor = false">
+          <span aria-hidden="true">×</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <div class="container brg-side-container">
+    <form [formGroup]="dealForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Título</label>
+        <input type="text" class="form-control" name="title" formControlName="title" />
+      </div>
+      <div class="form-group">
+        <label>Descrição</label>
+        <textarea class="form-control" rows="3" name="text" formControlName="text"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Criado</label>
+        <input type="date" class="form-control" name="createDate" formControlName="createDate" />
+      </div>
+      <div class="form-group">
+        <label>Publicado</label>
+        <input type="date" class="form-control" name="publishDate" formControlName="publishDate" />
+      </div>
+      <div class="form-group">
+        <label>Fim da publicação</label>
+        <input type="date" class="form-control" name="endDate" formControlName="endDate" />
+      </div>
+      <div class="input-group mb-3">
+        <input type="text"  class="form-control" name="url" formControlName="url">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="generateUrl()">Gerar URL</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Total vendido</label>
+        <input type="number" class="form-control" name="totalSold" formControlName="totalSold" >
+      </div>
+      <div class="form-group">
+        <label>Tipo</label>
+        <select class="form-control" name="type" formControlName="type">
+          <option *ngFor="let dealType of dealsTypes" [value]="dealType.key" [ngValue]="dealType.value">{{dealType.value}}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-outline-primary">Salvar</button>
+    </form>
+  </div>
+</div>
+
+
