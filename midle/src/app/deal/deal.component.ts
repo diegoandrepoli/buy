@@ -2,12 +2,18 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { DealTypesService } from '../deal-types.service';
 import { DealService } from '../deal.service';
+import { Utils } from '../app.constants';
 
 @Component({
   selector: 'app-deal',
   templateUrl: './deal.component.html',
   styleUrls: ['./deal.component.css']
 })
+
+/**
+ * Deal component
+ * @author Diego Andre Poli <diegoandrepoli@gmail.com>
+ */
 export class DealComponent implements OnInit {
 
   /**
@@ -36,7 +42,7 @@ export class DealComponent implements OnInit {
     publishDate: ['', Validators.required],
     endDate: ['', Validators.required],
     url: ['', Validators.required],
-    totalSold: [{value:'0', disabled: true}],
+    totalSold: ['', Validators.required],
     type: ['', Validators.required],
 
   },{});
@@ -47,7 +53,7 @@ export class DealComponent implements OnInit {
    * @param _deal as deal service
    * @param _dealTypes as deal type service
    */
-  constructor(private fb: FormBuilder, private _deal: DealService, private _dealTypes: DealTypesService) {}
+  constructor(private fb: FormBuilder, private _deal: DealService, private _dealTypes: DealTypesService, private utils: Utils) {}
 
   /**
    * On init component
@@ -99,9 +105,6 @@ export class DealComponent implements OnInit {
     form.publishDate = this.generateDateType(form.publishDate);
     form.endDate = this.generateDateType(form.endDate);
 
-    //AUTO DATE...
-    this.dealForm.value.createDate = new Date().toISOString().split('T')[0];
-
     return form;
   }
 
@@ -110,6 +113,8 @@ export class DealComponent implements OnInit {
    */
   onSubmit() {
 
+    //TODO: fix patch date on requirement
+    this.dealForm.value.createDate = new Date().toISOString().split('T')[0];
 
     //patch date values as object
     this.dealForm.patchValue(this.formSerialize(this.dealForm.value));
@@ -133,28 +138,15 @@ export class DealComponent implements OnInit {
     this.isUserEditor = true;
   }
 
-  asType(item){
-    return item;
-
-    /*
-    if(item === '' && this.dealsTypes !== ''){
-      return item;
-    }
-
-    for(let o of  this.dealsTypes) {
-      if (o.key == item) {
-        return o.value;
-      }
-    }
-    **/
+  asType(key) {
+    return this.utils.valueOfEnumerator(this.dealsTypes, key);
   }
 
-  generateUrl(){
-      var title = this.dealForm.value.title;
-      title = title.replace(/[^\w\s]/gi, '');
-      title = title.replace(/ /g, '-');
-      title = title.toLowerCase();
-      this.dealForm.controls['url'].setValue(title);
+  /**
+   * Slug generator
+   */
+  generateUrl() {
+      this.dealForm.controls['url'].setValue(this.utils.slugGenerator(this.dealForm.value.title));
   }
 
 }

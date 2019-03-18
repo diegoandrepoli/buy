@@ -22,5 +22,32 @@ export class Utils {
     return new HttpHeaders().set('Content-Type', 'application/json');
   }
 
+  /**
+   * Slug generator
+   * @param input
+   */
+  public slugGenerator(input) {
+        return input.toString().toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\-]+/g, '')
+            .replace(/\-\-+/g, '-')
+            .replace(/^-+/, '')
+            .replace(/-+$/, '');
+  }
+
+  /**
+   * Value of enumerator
+   * @param values
+   * @param key
+   */
+  public valueOfEnumerator(values, key) {
+    for(let o of  values) {
+        if (o.key == key) {
+            return o.value;
+        }
+    }
+
+    return '-';
+  }
 
 }

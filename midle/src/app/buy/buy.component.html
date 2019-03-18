@@ -55,14 +55,14 @@
 <div class="container">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item"><a href="#">Library</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Data</li>
+      <li class="breadcrumb-item"><a href="#">Ofertas</a></li>
+      <li class="breadcrumb-item"><a href="#">Região</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Personalizada</li>
     </ol>
   </nav>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="deal">
   <h1>{{ deal.title }}</h1>
   <div class="product group">
     <div class="col-1-2 product-image">
@@ -114,4 +114,9 @@
     </div>
   </div>
 
+</div>
+
+<div class="container brg-not-found" *ngIf="!deal">
+  <h1>Oooops!</h1>
+  <h6>Parece que esta página não está mais disponível...</h6>
 </div>
