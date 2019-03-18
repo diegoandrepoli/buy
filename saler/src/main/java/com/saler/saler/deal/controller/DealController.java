@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.saler.saler.buy.option.entity.BuyOption;
+import com.saler.saler.buy.option.service.BuyOptionService;
 import com.saler.saler.deal.entity.Deal;
 import com.saler.saler.deal.service.DealService;
 
@@ -27,8 +29,13 @@ public class DealController {
 	 * Deal service
 	 */
 	@Autowired
-	private DealService dealService;
+	private DealService dealService;	
 	
+
+		@Autowired
+		private BuyOptionService buyOptionService;
+		
+
 	/**
 	 * Add deal service
 	 * @param deal object
@@ -36,8 +43,22 @@ public class DealController {
 	 */
 	@CrossOrigin
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public Deal addProduct(@RequestBody Deal deal) {		
+	public Deal addProduct(@RequestBody Deal deal) {
+		if(deal.getId() != null) {
+			Deal byId = dealService.getById(deal.getId());			
+			deal.setBuyOptions(byId.getBuyOptions());
+		}
+		dealService.add(deal);
 		return dealService.add(deal);
+	}
+	
+	
+	@CrossOrigin
+	@RequestMapping(value="/merge", method=RequestMethod.POST)
+	public Deal addBuyOption(@RequestBody Deal deal) {		
+		Deal dealing = dealService.getById(deal.getId());
+		dealing.setMergeBuyOptions(deal.getBuyOptions());
+		return dealService.add(dealing);		
 	}
 	
 	/**
@@ -70,5 +91,35 @@ public class DealController {
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public void deleteDeal(@PathVariable("id") Long id) {
 		dealService.remove(id);		
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value="/url/{url}", method=RequestMethod.GET)
+	public Deal getDealByUrl(@PathVariable("url") String url) {
+		Long id = dealService.getIdByUrl(url);
+		Deal byId = dealService.getById(id);
+		
+//		Date publishDate = byId.getPublishDate();
+//		Date endDate = byId.getEndDate();
+//		
+//		if(publishDate.after(new Date()) || endDate.after(new Date())) {
+//			return new  Deal
+//		}
+		
+		return byId;
+	}
+	
+	
+	@CrossOrigin
+	@RequestMapping(value="/{dealId}/decrement/buy-option/{buyOptionId}", method=RequestMethod.PUT)
+	public void decrementQuantity(@PathVariable("dealId") Long dealId, @PathVariable("buyOptionId") Long buyOptionId) {
+		BuyOption buyOption = buyOptionService.getById(buyOptionId);
+		buyOption.setQuantityCupom(buyOption.getQuantityCupom()-1);
+		buyOptionService.add(buyOption);
+		
+		Deal byId = dealService.getById(dealId);
+		Long totalSold = byId.getTotalSold();
+		byId.setTotalSold(totalSold + 1);
+		dealService.add(byId);	
 	}
 }

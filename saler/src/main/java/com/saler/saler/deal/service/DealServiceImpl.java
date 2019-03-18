@@ -29,6 +29,14 @@ public class DealServiceImpl implements DealService {
 	@Override
 	public Deal getById(Long id) {
 		return dealRepository.findById(id).get();
+		
+	}
+	
+	
+	@Override
+	public Long getIdByUrl(String url) {
+		return dealRepository.findIdUrl(url);
+		
 	}
 
 	/**

@@ -5,12 +5,17 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.saler.saler.buy.option.entity.BuyOption;
 
 /**
  * Deal entity
@@ -42,7 +47,8 @@ public class Deal {
 	/**
 	 * Deal create date
 	 */
-	@Temporal(TemporalType.TIMESTAMP) 
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
 	
 	/**
@@ -223,4 +229,20 @@ public class Deal {
 	public void setBuyOptions(List<BuyOption> buyOptions) {
 		this.buyOptions = buyOptions;
 	}
+	
+	public void setMergeBuyOptions(List<BuyOption> buyOptions) {
+		for(BuyOption option : buyOptions) {			
+			this.buyOptions.add(option);
+		}
+	}
+	
+	public void addBuyOption(BuyOption buyOption) {		
+		this.buyOptions.add(buyOption);
+	}
+	
+	
+
+	
+
+	
 }

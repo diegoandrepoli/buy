@@ -1,4 +1,4 @@
-package com.saler.saler.deal.entity;
+package com.saler.saler.deal.type.entity;
 
 /**
  * Deal type entity

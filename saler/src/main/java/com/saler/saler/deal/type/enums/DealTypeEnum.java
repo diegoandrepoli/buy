@@ -1,9 +1,4 @@
-package com.saler.saler.deal.enums;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import com.saler.saler.deal.entity.DealType;
+package com.saler.saler.deal.type.enums;
 
 /**
  * Deal type enums
@@ -66,18 +61,5 @@ public enum DealTypeEnum {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
-	/**
-	 * Objects of deal emums
-	 * @return list of deals
-	 */
-	public static List<DealType> objects() {
-		List<DealType> list = new ArrayList<DealType>();
-		
-		for(DealTypeEnum en : DealTypeEnum.values()) {
-			list.add(new DealType(en.getKey(), en.getValue()));
-		}
-		
-		return list;
-	}
+
 }

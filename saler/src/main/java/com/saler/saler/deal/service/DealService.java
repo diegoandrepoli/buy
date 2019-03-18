@@ -35,4 +35,6 @@ public interface DealService {
 	 * @param id of deal
 	 */
 	void remove(Long id);
+	
+	Long getIdByUrl(String url);
 }

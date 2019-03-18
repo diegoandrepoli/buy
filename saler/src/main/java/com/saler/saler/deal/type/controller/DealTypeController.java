@@ -1,4 +1,4 @@
-package com.saler.saler.deal.controller;
+package com.saler.saler.deal.type.controller;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.saler.saler.deal.entity.DealType;
-import com.saler.saler.deal.enums.DealTypeEnum;
+import com.saler.saler.deal.type.entity.DealType;
+import com.saler.saler.deal.type.utils.DealTypeUtils;
 
 /**
  * Deal types controller 
@@ -28,7 +28,7 @@ public class DealTypeController {
 	@CrossOrigin
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public List<DealType> getAll(HttpServletRequest request){	
-		return DealTypeEnum.objects();
+		return DealTypeUtils.objects();
 	}
 
 }
