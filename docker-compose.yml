@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+    saler:
+      image: 'saler-app'
+      build:
+         context: ./saler
+         dockerfile: Dockerfile
+      ports:
+        - 8081:8081
+          #volumes:
+          #- ./saler
+    midle:
+      image: 'midle-app'
+      build:
+         context: ./midle
+         dockerfile: Dockerfile
+      ports:
+        - 3000:80
