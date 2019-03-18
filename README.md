@@ -34,7 +34,7 @@ mvn test
 ````
 
 ## Documentation
-Example of backend APIs on Postman collections, to get Postman collection [here](https://www.getpostman.com/collections/97375b0bb24a8bfab7f4). The API documentation dispose on Swagger, to acess [here](https://app.swaggerhub.com/apis-docs/diegopoli/Buy/1.0) 
+Example of backend APIs on Postman collections, to get Postman collection [here](https://www.getpostman.com/collections/97375b0bb24a8bfab7f4), the API documentation dispose on Swagger, to acess [here](https://app.swaggerhub.com/apis-docs/diegopoli/Buy/1.0) 
 
 ## Running application without Docker
 To run application without Docker your need Java and Maven installed to run backend application. Angular Cli to run frontend application, the running backend application enter the saler directory with command:
