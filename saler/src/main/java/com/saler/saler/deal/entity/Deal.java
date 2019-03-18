@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -31,6 +30,9 @@ public class Deal {
 	@GeneratedValue
 	private Long id;
 	
+	/**
+	 * List of buy option
+	 */
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BuyOption> buyOptions = new ArrayList<>();
 	
@@ -222,27 +224,38 @@ public class Deal {
 		this.url = url;
 	}
 
+	/**
+	 * Get buy options
+	 * @return list of buy options
+	 */
 	public List<BuyOption> getBuyOptions() {
 		return buyOptions;
 	}
 
+	/**
+	 * Set buy options
+	 * @param buy options
+	 */
 	public void setBuyOptions(List<BuyOption> buyOptions) {
 		this.buyOptions = buyOptions;
 	}
 	
+	/**
+	 * Set merge buy option
+	 * @param list of buy options
+	 */
 	public void setMergeBuyOptions(List<BuyOption> buyOptions) {
 		for(BuyOption option : buyOptions) {			
 			this.buyOptions.add(option);
 		}
 	}
 	
+	/**
+	 * Add buy option 
+	 * @param buy option
+	 */
 	public void addBuyOption(BuyOption buyOption) {		
 		this.buyOptions.add(buyOption);
 	}
-	
-	
-
-	
-
 	
 }

@@ -7,14 +7,14 @@ import com.saler.saler.deal.type.entity.DealType;
 import com.saler.saler.deal.type.enums.DealTypeEnum;
 
 /**
- * 
- * @author diego
- *
+ * Deal type utils
+ * @author Diego Andre Poli <diegoandrepoli@gmail.com>
  */
 public class DealTypeUtils {
 	
 	/**
 	 * Objects of deal emums
+	 * TODO: use lambda to perform
 	 * @return list of deals
 	 */
 	public static List<DealType> objects() {

@@ -58,4 +58,16 @@ public class BuyOptionDealServiceImpl implements BuyOptionService {
 	public void remove(Long id) {
 		buyOptionRepository.deleteById(id);
 	}
+	
+	/**
+	 * Decrement cupon
+	 * @param id as buy option
+	 */
+	@Override
+	public void decrementCupon(Long id) {
+		BuyOption option = getById(id);
+		option.setQuantityCupom(option.getQuantityCupom()-1);
+		add(option);
+	}
+	
 }

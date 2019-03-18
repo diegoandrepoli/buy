@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Diego Andre Poli <diegoandrepoli@gmail.com>
  */
 @Controller
-public class PagesController {
-	
+public class PagesController {	
 
 	/**
 	 * Home page application

@@ -35,4 +35,10 @@ public interface BuyOptionService {
 	 * @param id of deal
 	 */
 	void remove(Long id);
+	
+	/**
+	 * Decrement cupon
+	 * @param buy option id
+	 */
+	void decrementCupon(Long id);
 }

@@ -31,6 +31,9 @@ public class BuyOptionController {
 	@Autowired
 	private BuyOptionService buyOptionService;
 	
+	/**
+	 * Deal service
+	 */
 	@Autowired
 	private DealService dealService;
 	
@@ -41,13 +44,15 @@ public class BuyOptionController {
 	 */
 	@CrossOrigin
 	@RequestMapping(value="/add/deal/{id}", method=RequestMethod.POST)
-	public Deal addProduct(@PathVariable("id") Long id, @RequestBody BuyOption buyOption) {	
-		Deal deal = dealService.getById(id);
-		deal.addBuyOption(buyOption);
-		dealService.add(deal);
-		return deal;
+	public Deal addProduct(@PathVariable("id") Long id, @RequestBody BuyOption buyOption) {
+		return dealService.addBuyOption(id, buyOption);	
 	}
 	
+	/**
+	 * update buy option
+	 * @param buyOption
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value="/update", method=RequestMethod.PUT)
 	public BuyOption update(@RequestBody BuyOption buyOption) {
@@ -56,8 +61,8 @@ public class BuyOptionController {
 	
 	/**
 	 * Get all deal
-	 * @param request
-	 * @return
+	 * @param servlet request
+	 * @return list of buy options
 	 */
 	@CrossOrigin
 	@RequestMapping(value="", method=RequestMethod.GET)
@@ -76,12 +81,14 @@ public class BuyOptionController {
 		return buyOptionService.getById(id);
 	}
 	
+	/**
+	 * Decrement buy option quantity
+	 * @param id
+	 */
 	@CrossOrigin
 	@RequestMapping(value="/decrement/deal/{id}", method=RequestMethod.PUT)
 	public void decrementQuantity(@PathVariable("id") Long id) {
-		BuyOption buyOption = buyOptionService.getById(id);
-		buyOption.setQuantityCupom(buyOption.getQuantityCupom()-1);
-		buyOptionService.add(buyOption);
+		buyOptionService.decrementCupon(id);
 	}
 	
 	/**

@@ -9,7 +9,6 @@ import com.saler.saler.deal.repository.DealRepository;
 
 /**
  * Saler application runner
- * 
  * @author Diego Andre Poli <diegoandrepoli@gmail.com>
  */
 @SpringBootApplication
@@ -21,18 +20,15 @@ public class SalerApplication {
 	 */
 	@Autowired
 	public SalerApplication(DealRepository dealRepository) {
-		SampleData.generate(dealRepository);
-		
+		SampleData.generate(dealRepository);		
 	}
 
 	/**
 	 * Main application
-	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(SalerApplication.class, args);
-
 	}
 
 }

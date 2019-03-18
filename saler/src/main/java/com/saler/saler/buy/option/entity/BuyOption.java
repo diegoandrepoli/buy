@@ -20,7 +20,6 @@ public class BuyOption {
 	@Id
 	@GeneratedValue
 	private Long id;
-
 	
 	/**
 	 * Buy option title

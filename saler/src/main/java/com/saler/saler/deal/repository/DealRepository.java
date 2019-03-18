@@ -14,6 +14,11 @@ import com.saler.saler.deal.entity.Deal;
 @Repository("dealRepository")
 public interface DealRepository extends JpaRepository<Deal, Long>{
 	
+	/**
+	 * Custom find id by url
+	 * @param deal url 
+	 * @return deal id
+	 */
 	@Query("SELECT id FROM Deal where url = :url") 
     Long findIdUrl(@Param("url") String url);
 }
