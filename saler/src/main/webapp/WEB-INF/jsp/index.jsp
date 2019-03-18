@@ -6,6 +6,6 @@
 		<title>Insert title here</title>
  	</head>
  	</body>
-		Welcome to saler!
+		Welcome to saler!s
 	</body>
 </html>

@@ -16,11 +16,10 @@
 
 <div class="brg-pack">
   <div class="container brg-container">
-    <!--
     <h2 class="brg-naving-title">{{ selectedLevel.title }}</h2>
     <p>{{ selectedLevel.text }}</p>
+    <hr/>
     <p>Opções de compra da oferta {{ selectedLevel.title }}</p>
-    -->
 
     <table class="table table-borderless">
       <thead>
@@ -86,15 +85,32 @@
         </div>
         <div class="form-group">
           <label>Preço</label>
-          <input type="text" class="form-control" name="normalPrice" formControlName="normalPrice"/>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">R$</div>
+            </div>
+            <input type="text" class="form-control" name="normalPrice" formControlName="normalPrice"/>
+          </div>
         </div>
         <div class="form-group">
           <label>Preço de venda</label>
-          <input type="text" class="form-control" name="salePrice" formControlName="salePrice" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">R$</div>
+            </div>
+            <input type="text" class="form-control" name="salePrice" formControlName="salePrice">
+          </div>
         </div>
         <div class="form-group">
           <label>Desconto</label>
-          <input type="number" class="form-control" name="percentageDiscount" formControlName="percentageDiscount">
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">% </div>
+            </div>
+            <input type="number" class="form-control" name="percentageDiscount" formControlName="percentageDiscount">
+          </div>
+
+
         </div>
         <div class="form-group">
           <label>Quantidade de cupons</label>
@@ -108,7 +124,7 @@
           <label>Fim das vendas</label>
           <input type="date" class="form-control" name="endDate" formControlName="endDate" >
         </div>
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="submit" class="btn btn-outline-primary">Salvar</button>
       </form>
     </div>
 </div>

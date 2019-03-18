@@ -1,17 +1,17 @@
 
-.brg-pack
-{
+.brg-pack {
   background-color: #f8f9fa !important;
   padding-top: 30px;
 }
-.brg-container{
-  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+
+.brg-container {
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
   background-color: #fff !important;
   padding: 30px;
   border-radius: 2px;
 }
 
-.brg-side{
+.brg-side {
   height: 100%;
   width: 45%;
   position: fixed;
@@ -21,7 +21,7 @@
   background-color: #ffffff;
   overflow-x: hidden;
   transition: 0.5s;
-  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
 
 }
 
@@ -29,6 +29,7 @@
   background-color: #ffffff !important;
 
 }
+
 .brg-side .navbar h1 {
   color: #343a40;
   padding: 7px;
@@ -41,19 +42,18 @@
 
 .navbar {
   background-color: #563d7c !important;
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,.05),inset 0 -1px 0 rgba(0,0,0,.1);
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(0, 0, 0, .1);
 }
 
-.navbar-brand{
+.navbar-brand {
   color: #ffffff;
 }
 
-.brg-none{
+.brg-none {
   display: none;
 }
 
-
-.form-group input{
+.form-group input {
   border-radius: .1rem;
 }
 
@@ -62,7 +62,7 @@
   box-shadow: inset 0 1px 1px rgb(206, 212, 218), 0 0 1px rgb(206, 212, 218);
 }
 
-.btn-outline-primary{
+.btn-outline-primary {
   border-color: #563d7c;
   color: #563d7c;
   border-radius: .1rem;
@@ -72,25 +72,24 @@
   border-bottom: 1px solid #dee2e6;
 }
 
-
-.brg-sub-nav{
-  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+.brg-sub-nav {
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
 }
 
-.brg-sub-nav active{
+.brg-sub-nav active {
   color: #444444;
 }
-.brg-sub-nav .brg-active{
+
+.brg-sub-nav .brg-active {
   cursor: pointer;
   color: #777777;
 }
 
-
-.brg-outline-table{
+.brg-outline-table {
   border: none;
 }
 
-.brg-outline-table:hover{
+.brg-outline-table:hover {
   border: none;
   background-color: #ffffff;
 }
@@ -101,21 +100,20 @@
   border: none;
 }
 
-.brg-badge-lg{
+.brg-badge-lg {
   padding: 6px 11px;
   border-radius: 2px;
   text-transform: lowercase;
 }
 
-
-
-.brg-badge-OF1{
+.brg-badge-OF1 {
   background: #f1c40f;
 }
 
-.brg-badge-PRM{
+.brg-badge-PRM {
   background: #2ecc71;
 }
-.brg-badge-LQA{
+
+.brg-badge-LQA {
   background: #e74c3c;
 }

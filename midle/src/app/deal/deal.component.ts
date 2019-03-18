@@ -32,11 +32,11 @@ export class DealComponent implements OnInit {
     id: null,
     title: ['', Validators.required],
     text: ['', Validators.required],
-    createDate: ['', Validators.required],
+    createDate: [{ value: '', disabled: true, }],
     publishDate: ['', Validators.required],
     endDate: ['', Validators.required],
     url: ['', Validators.required],
-    totalSold: ['', Validators.required],
+    totalSold: [{value:'0', disabled: true}],
     type: ['', Validators.required],
 
   },{});
@@ -97,7 +97,11 @@ export class DealComponent implements OnInit {
   formSerialize(form) {
     form.createDate = this.generateDateType(form.createDate);
     form.publishDate = this.generateDateType(form.publishDate);
-    form.createDatecreateDate = this.generateDateType(form.endDate);
+    form.endDate = this.generateDateType(form.endDate);
+
+    //AUTO DATE...
+    this.dealForm.value.createDate = new Date().toISOString().split('T')[0];
+
     return form;
   }
 
@@ -105,6 +109,8 @@ export class DealComponent implements OnInit {
    * Submit form value
    */
   onSubmit() {
+
+
     //patch date values as object
     this.dealForm.patchValue(this.formSerialize(this.dealForm.value));
 
