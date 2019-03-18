@@ -2,7 +2,6 @@ package com.saler.saler.buy.option.controller;
 
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -60,40 +59,10 @@ public class BuyOptionControllerTest {
 	}
 
 	/**
-	 * Test add buy option method
-	 * @throws Exception
-	 */
-	/*
-	@Test
-	public void testAddBuyOption() throws Exception {
-
-		//create deal
-		BuyOption option = new BuyOption();
-		option.setId(new Long(223));
-		option.setTitle("As title");
-		option.setNormalPrice(new BigDecimal(30));
-		option.setSalePrice(new BigDecimal(20));
-		option.setPercentageDiscount(new BigDecimal(20));
-		option.setQuantityCupom(new Long(30));
-		option.setStartDate(new Date(new Long(43534)));
-		option.setEndDate(new Date(new Long(43534)));
-		
-		//get all on result service
-		doReturn(option).when(buyOptionService).add(option);
-
-		//perform test on post deal
-		mvc.perform(post("/buy-option/add")			
-			.contentType(MediaType.APPLICATION_JSON)
-			.content(JsonStrinfy.asJsonString(option)))
-			.andExpect(status().isOk());					
-	}
-	*/
-
-	/**
 	 * Test get all buy options
 	 * @throws Exception
 	 */
-//	@Test
+	@Test
 	public void testGetAllBuyOption() throws Exception {
 
 		//create deal
@@ -125,7 +94,7 @@ public class BuyOptionControllerTest {
 	 * Test get buy option
 	 * @throws Exception
 	 */
-//	@Test
+	@Test
 	public void testGetBuyOption() throws Exception {
 
 		//create deal
