@@ -48,15 +48,6 @@ public class DealController {
 		return dealService.saveOrUpdate(deal);		
 	}
 	
-	
-//	@CrossOrigin
-//	@RequestMapping(value="/merge", method=RequestMethod.POST)
-//	public Deal addBuyOption(@RequestBody Deal deal) {		
-//		Deal dealing = dealService.getById(deal.getId());
-//		dealing.setMergeBuyOptions(deal.getBuyOptions());
-//		return dealService.add(dealing);		
-//	}
-	
 	/**
 	 * Get all deal
 	 * @param request
