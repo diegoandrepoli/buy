@@ -116,6 +116,10 @@ export class DealComponent implements OnInit {
     //TODO: fix patch date on requirement
     this.dealForm.value.createDate = new Date().toISOString().split('T')[0];
 
+    if(this.dealForm.value.totalSold === ''){
+      this.dealForm.value.totalSold = 0;
+    }
+
     //patch date values as object
     this.dealForm.patchValue(this.formSerialize(this.dealForm.value));
 
