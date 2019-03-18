@@ -10,9 +10,8 @@
           <input class="form-control mr-sm-2 nav-btn-offer" type="search" placeholder="Buscar ofertas, bairros, etc" aria-label="Search" disabled>
           <input class="form-control mr-sm-2" type="search" placeholder="São Paulo - Sul e Oeste" aria-label="Search" disabled>
           <button class="btn btn-outline-success my-2 my-sm-0 nav-btn-search" type="submit" disabled>
-            <i class="material-icons">
-            search
-          </i></button>
+            <i class="material-icons">search</i>
+          </button>
         </form>
       </li>
       <li class="nav-item ">
@@ -84,7 +83,7 @@
         <div class="list-group"  *ngFor="let item of deal.buyOptions">
           <div class="list-group-item list-group-item-action flex-column align-items-start ">
             <div class="d-flex w-100 justify-content-between">
-              <div style="float: left;  ">
+              <div style="float: left;">
                 <div class="brg-buy-md-title">{{ item.title }}</div>
                 <div style="display: block">De {{ item.startDate | date: 'MM/dd/yyyy':'UTC' }} até {{ item.endDate | date: 'MM/dd/yyyy':'UTC' }}</div>
               </div>
@@ -113,7 +112,6 @@
       </p>
     </div>
   </div>
-
 </div>
 
 <div class="container brg-not-found" *ngIf="!deal">

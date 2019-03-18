@@ -4,6 +4,8 @@ import {FormBuilder, Validators} from "@angular/forms";
 import { BuyOptionService } from '../buy-option.service';
 import {DealService} from "../deal.service";
 import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import { Utils } from '../app.constants';
+import {DealTypesService} from "../deal-types.service";
 
 /**
  * Component configuration (default angular)
@@ -26,7 +28,7 @@ export class BuyOptionComponent implements OnInit {
    * @param _buyOption as buy option service
    * @param _deal as deal service
    */
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private _buyOption: BuyOptionService, private _deal: DealService) {}
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private _buyOption: BuyOptionService, private _deal: DealService, private utils: Utils) {}
 
   /**
    * Is use editor control
@@ -88,8 +90,8 @@ export class BuyOptionComponent implements OnInit {
    * @param form builder
    */
   formSerialize(form) {
-    form.startDate = new Date(form.startDate).toISOString().split('T')[0];
-    form.endDate = new Date(form.endDate).toISOString().split('T')[0];
+    form.startDate = this.utils.formatDate(form.startDate);
+    form.endDate = this.utils.formatDate(form.endDate);
     return form;
   }
 
@@ -120,7 +122,7 @@ export class BuyOptionComponent implements OnInit {
       //patch values of form
       this.buyOptionForm.patchValue(this.formSerialize(this.buyOptionForm.value));
 
-      //edit or update form
+      //edit or update form (group and formalize methods on backend)
       if(this.buyOptionForm.value.id) {
         this.updateBuyOption(this.buyOptionForm.value);
       }else{
@@ -129,6 +131,9 @@ export class BuyOptionComponent implements OnInit {
 
       //dispose modal
       this.isUserEditor = false;
+
+      //clear form
+      this.buyOptionForm.reset();
   }
 
   /**

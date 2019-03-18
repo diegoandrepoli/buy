@@ -50,4 +50,15 @@ export class Utils {
     return '-';
   }
 
+  /**
+   * Get date as now
+   * @return new date
+   */
+  public getNewDate(){
+      return new Date().toISOString().split('T')[0];
+  }
+
+  public formatDate(date){
+      return new Date(date).toISOString().split('T')[0]
+  }
 }

@@ -67,7 +67,7 @@ export class BuyComponent implements OnInit {
    */
   saleBuyOption(dealId, buyOptionId) {
     this._deal.buy<Object[]>(dealId, buyOptionId).subscribe((data: Object[]) => {
-      alert("Parabéns! Sua compra foi concluída!");
+      alert("Parabéns! Sua escolha foi processada com sucesso!");
       this.getDealByUrl(this.getUrl());
     });
   }

@@ -113,21 +113,23 @@ export class DealComponent implements OnInit {
    */
   onSubmit() {
 
-    //TODO: fix patch date on requirement
-    this.dealForm.value.createDate = new Date().toISOString().split('T')[0];
+    //perform date
+    this.dealForm.value.createDate = this.utils.getNewDate();
 
-    if(this.dealForm.value.totalSold === ''){
-      this.dealForm.value.totalSold = 0;
-    }
+    //populate total sold
+    this.setInitialTotalSold();
 
     //patch date values as object
     this.dealForm.patchValue(this.formSerialize(this.dealForm.value));
 
     //save deal
-    this._deal.add(this.dealForm.value).subscribe(res => {console.log(res), this.getAll()});
+    this._deal.add(this.dealForm.value).subscribe(res => { this.getAll() });
 
     //disable modal
     this.isUserEditor = false;
+
+    //clear form
+    this.dealForm.reset();
   }
 
   /**
@@ -144,6 +146,13 @@ export class DealComponent implements OnInit {
 
   asType(key) {
     return this.utils.valueOfEnumerator(this.dealsTypes, key);
+  }
+
+  /**
+   * Populate total sold
+   */
+  setInitialTotalSold(){
+    if(this.dealForm.value.totalSold === ''){ this.dealForm.value.totalSold = 0; }
   }
 
   /**
